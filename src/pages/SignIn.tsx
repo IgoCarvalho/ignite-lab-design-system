@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Envelope, Lock } from 'phosphor-react';
 import { FormEvent, useState } from 'react';
 import { Button } from '../components/Button';
@@ -10,8 +11,14 @@ import { TextInput } from '../components/TextInput';
 export function SignIn() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
+    await axios.post('/sessions', {
+      email: 'igocarvalho@gmail.com',
+      password: '1234567890',
+    });
+
     setIsUserSignedIn(true);
   }
 
